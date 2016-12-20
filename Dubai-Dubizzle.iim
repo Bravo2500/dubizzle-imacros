@@ -1,0 +1,28 @@
+' Dubizzle Ad Poster by thecrazybob
+VERSION BUILD=10.4.28.1074
+TAB T=1
+SET !VAR1 EVAL("Math.floor(Math.random()*3 + 1);")
+SET !VAR2 EVAL("Math.floor(Math.random()*10 + 2);")
+SET !DATASOURCE dubai-ad.csv
+SET !LOOP 2
+SET !DATASOURCE_LINE {{!VAR2}}
+TAB CLOSEALLOTHERS
+URL GOTO=https://dubai.dubizzle.com/place-an-ad/pick-a-category/
+TAG POS=1 TYPE=SPAN FORM=NAME:NoFormName ATTR=TXT:?
+WAIT SECONDS=5
+TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:NoFormName ATTR=NAME:title CONTENT=Web<SP>Design<SP>in<SP>UAE
+WAIT SECONDS=5
+TAG POS=1 TYPE=BUTTON:SUBMIT FORM=NAME:NoFormName ATTR=ID:codi-submit
+WAIT SECONDS=5
+TAG POS=1 TYPE=A ATTR=TXT:Freelancers
+WAIT SECONDS=5
+TAG POS=1 TYPE=A FORM=NAME:NoFormName ATTR=ID:upload-button
+TAG POS=1 TYPE=INPUT:FILE FORM=NAME:NoFormName ATTR=NAME:photo CONTENT=image-{{!VAR1}}.jpg
+WAIT SECONDS=5
+TAG POS=1 TYPE=TEXTAREA FORM=NAME:NoFormName ATTR=NAME:description CONTENT={{!COL1}}
+TAG POS=1 TYPE=INPUT:TEL FORM=NAME:NoFormName ATTR=NAME:phone_number CONTENT=0554012015
+TAG POS=1 TYPE=SELECT FORM=NAME:NoFormName ATTR=NAME:neighbourhood CONTENT=%57384
+' Uncomment the below tag and comment the above tag in case of neighbourhood tag is not found
+' TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:NoFormName ATTR=ID:id_neighbourhood CONTENT=Al<SP>Dhafrah
+WAIT SECONDS=2
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=NAME:NoFormName ATTR=ID:enter-details-submit
