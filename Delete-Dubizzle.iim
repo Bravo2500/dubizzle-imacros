@@ -1,8 +1,9 @@
-﻿' Dubizzle Ad Remover by thecrazybob
+' Dubizzle Ad Remover by thecrazybob
 VERSION BUILD=10.4.28.1074
 TAB T=1
 TAB CLOSEALLOTHERS
 URL GOTO=https://abudhabi.dubizzle.com/mylistings/
+ONDIALOG POS=1 BUTTON=YES
 TAG POS=1 TYPE=INPUT:CHECKBOX FORM=NAME:NoFormName ATTR=NAME:delete-CO-FR* CONTENT=YES
 TAG POS=2 TYPE=INPUT:CHECKBOX FORM=NAME:NoFormName ATTR=NAME:delete-CO-FR* CONTENT=YES
 WAIT SECONDS = 5
