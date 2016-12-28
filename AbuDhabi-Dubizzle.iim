@@ -4,7 +4,7 @@ TAB T=1
 SET !VAR1 EVAL("Math.floor(Math.random()*3 + 1);")
 SET !VAR2 EVAL("Math.floor(Math.random()*2 + 1);")
 SET !DATASOURCE ad.csv
-SET !LOOP 2
+' SET !LOOP 2
 SET !DATASOURCE_LINE {{!VAR2}}
 TAB CLOSEALLOTHERS
 URL GOTO=https://abudhabi.dubizzle.com/place-an-ad/pick-a-category/
