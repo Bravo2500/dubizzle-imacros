@@ -4,9 +4,7 @@ TAB T=1
 SET !VAR1 EVAL("Math.floor(Math.random()*3 + 1);")
 SET !VAR2 EVAL("Math.floor(Math.random()*2 + 1);")
 SET !DATASOURCE ad.csv
-' SET !LOOP 2
 SET !DATASOURCE_LINE {{!VAR2}}
-TAB CLOSEALLOTHERS
 URL GOTO=https://abudhabi.dubizzle.com/place-an-ad/pick-a-category/
 TAG POS=1 TYPE=SPAN FORM=NAME:NoFormName ATTR=TXT:
 WAIT SECONDS=5
@@ -23,5 +21,5 @@ TAG POS=1 TYPE=INPUT:TEL FORM=NAME:NoFormName ATTR=NAME:phone_number CONTENT=055
 TAG POS=1 TYPE=SELECT FORM=NAME:NoFormName ATTR=NAME:neighbourhood CONTENT=%57384
 ' Uncomment the below tag and comment the above tag in case of neighbourhood tag is not found
 ' TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:NoFormName ATTR=ID:id_neighbourhood CONTENT=Al<SP>Dhafrah
-WAIT SECONDS=2
+WAIT SECONDS=10
 TAG POS=1 TYPE=INPUT:SUBMIT FORM=NAME:NoFormName ATTR=ID:enter-details-submit
