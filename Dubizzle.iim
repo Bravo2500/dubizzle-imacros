@@ -1,0 +1,60 @@
+﻿' Dubizzle Ad Remover by thecrazybob
+VERSION BUILD=10.4.28.1074
+TAB T=1
+' Number of Images for Abu Dhabi
+SET !VAR1 EVAL("Math.floor(Math.random()*18 + 1);")
+' Number of Rows for Abu Dhabi
+SET !VAR2 EVAL("Math.floor(Math.random()*5 + 1);")
+' Number of Images for Dubai
+SET !VAR3 EVAL("Math.floor(Math.random()*15 + 1);")
+' Number of Rows for Dubai
+SET !VAR4 EVAL("Math.floor(Math.random()*4 + 1);")
+SET !DATASOURCE ad.csv
+' Starting Deleting the Ads
+URL GOTO=https://abudhabi.dubizzle.com/mylistings/
+ONDIALOG POS=1 BUTTON=YES
+TAG POS=1 TYPE=INPUT:CHECKBOX FORM=NAME:NoFormName ATTR=NAME:delete-CO-FR* CONTENT=YES
+TAG POS=2 TYPE=INPUT:CHECKBOX FORM=NAME:NoFormName ATTR=NAME:delete-CO-FR* CONTENT=YES
+WAIT SECONDS = 5
+TAG POS=3 TYPE=INPUT:SUBMIT FORM=NAME:NoFormName ATTR=NAME:sitesearch
+' Starting AD
+SET !DATASOURCE_LINE {{!VAR2}}
+URL GOTO=https://abudhabi.dubizzle.com/place-an-ad/pick-a-category/
+TAG POS=1 TYPE=SPAN FORM=NAME:NoFormName ATTR=TXT:
+WAIT SECONDS=5
+TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:NoFormName ATTR=NAME:title CONTENT={{!COL2}}
+WAIT SECONDS=5
+TAG POS=1 TYPE=BUTTON:SUBMIT FORM=NAME:NoFormName ATTR=ID:codi-submit
+WAIT SECONDS=5
+TAG POS=1 TYPE=A ATTR=TXT:Freelancers
+WAIT SECONDS=5
+TAG POS=1 TYPE=INPUT:FILE ATTR=NAME:photo CONTENT=C:\image-{{!VAR1}}.jpg
+WAIT SECONDS=5
+TAG POS=1 TYPE=TEXTAREA FORM=NAME:NoFormName ATTR=NAME:description CONTENT={{!COL1}}
+TAG POS=1 TYPE=INPUT:TEL FORM=NAME:NoFormName ATTR=NAME:phone_number CONTENT=0554012015
+TAG POS=1 TYPE=SELECT FORM=NAME:NoFormName ATTR=NAME:neighbourhood CONTENT=%57384
+' Uncomment the below tag and comment the above tag in case of neighbourhood tag is not found
+' TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:NoFormName ATTR=ID:id_neighbourhood CONTENT=Al<SP>Dhafrah
+WAIT SECONDS=10
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=NAME:NoFormName ATTR=ID:enter-details-submit
+' Starting D
+SET !DATASOURCE_LINE {{!VAR4}}
+URL GOTO=https://dubai.dubizzle.com/place-an-ad/pick-a-category/
+TAG POS=1 TYPE=SPAN FORM=NAME:NoFormName ATTR=TXT:
+WAIT SECONDS=5
+TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:NoFormName ATTR=NAME:title CONTENT={{!COL2}}
+WAIT SECONDS=5
+TAG POS=1 TYPE=BUTTON:SUBMIT FORM=NAME:NoFormName ATTR=ID:codi-submit
+WAIT SECONDS=5
+TAG POS=1 TYPE=A ATTR=TXT:Freelancers
+WAIT SECONDS=5
+TAG POS=1 TYPE=INPUT:FILE ATTR=NAME:photo CONTENT=C:\image-{{!VAR1}}.jpg
+WAIT SECONDS=5
+TAG POS=1 TYPE=TEXTAREA FORM=NAME:NoFormName ATTR=NAME:description CONTENT={{!COL1}}
+TAG POS=1 TYPE=INPUT:TEL FORM=NAME:NoFormName ATTR=NAME:phone_number CONTENT=0554012015
+' TAG POS=1 TYPE=SELECT FORM=NAME:NoFormName ATTR=NAME:neighbourhood CONTENT=%57384
+' Uncomment the below tag and comment the above tag in case of neighbourhood tag is not found
+' TAG POS=1 TYPE=INPUT:TEXT FORM=NAME:NoFormName ATTR=ID:id_neighbourhood CONTENT=Al<SP>Dhafrah
+WAIT SECONDS=10
+TAG POS=1 TYPE=INPUT:SUBMIT FORM=NAME:NoFormName ATTR=ID:enter-details-submit
+WAIT SECONDS = 3600
